@@ -1,26 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy 1st Anniversary My Love ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Happy 1st Anniversary ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-      text-align: center;
       color: #4a1c2f;
+      text-align: center;
       overflow-x: hidden;
+    }
+
+    /* INTRO SCREEN */
+    #introScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #b31217, #e52d27);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      z-index: 10000;
+      padding: 20px;
+    }
+
+    #introScreen h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .typing {
+      font-size: 2rem;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 4s steps(30, end), blink .7s infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    .enter-btn {
+      margin-top: 30px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #b31217;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
 
     header {
       padding: 40px 20px;
-    }
-
-    header h1 {
-      font-size: 3rem;
     }
 
     .gallery {
@@ -36,15 +81,10 @@
       width: 100%;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      transition: transform 0.3s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
     }
 
     .message {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.75);
       padding: 30px;
       border-radius: 20px;
       max-width: 800px;
@@ -52,88 +92,36 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    /* Falling hearts & roses */
+    /* FALLING ELEMENTS */
     .heart, .rose {
       position: fixed;
-      top: -30px;
+      top: -20px;
+      pointer-events: none;
       animation: fall linear infinite;
       z-index: 9999;
-      pointer-events: none;
     }
 
-    .heart {
-      color: red;
-      font-size: 20px;
-    }
-
-    .rose {
-      font-size: 22px;
-    }
+    .heart { color: red; font-size: 20px; }
+    .rose { font-size: 22px; }
 
     @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
-
-    /* Intro screen */
-    #introScreen {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #b31217, #e52d27);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      z-index: 10000;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .typing {
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 3px solid white;
-      animation: typing 4s steps(30,end), blink .7s infinite;
-      font-size: 2.2rem;
-      margin-top: 20px;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent }
-    }
-
-    .enter-btn {
-      margin-top: 30px;
-      padding: 15px 35px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 30px;
-      background: white;
-      color: #b31217;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      to { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
 
 <body>
 
-<!-- INTRO SCREEN -->
+<!-- INTRO -->
 <div id="introScreen">
   <h1>For My Forever ❤️</h1>
   <div class="typing">Will you be mine forever? 💍</div>
-  <button class="enter-btn" onclick="enterSite()">Enter My Heart 💖</button>
+  <button class="enter-btn" id="startBtn">Enter My Heart 💖</button>
+  <p style="margin-top:15px; font-size:0.9rem;">(Tap once to start music)</p>
 </div>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
+<!-- AUDIO (BULLETPROOF) -->
+<audio id="bgMusic" preload="auto" loop playsinline>
   <source src="janam_janam.mp3" type="audio/mpeg">
 </audio>
 
@@ -143,16 +131,16 @@
 </header>
 
 <section class="gallery">
-  <img src="606542245_25846602494963277_1932360437498613541_n.jpeg">
-  <img src="605628884_817824847922407_7098600923762276303_n.jpeg">
-  <img src="605914600_1909920580404400_2938635036607107819_n.jpeg">
+  <img src="606542245_25846602494963277_1932360437498613541_n.jpeg" />
+  <img src="605628884_817824847922407_7098600923762276303_n.jpeg" />
+  <img src="605914600_1909920580404400_2938635036607107819_n.jpeg" />
 </section>
 
 <section class="message">
   <h2>To My Beautiful Wife</h2>
   <p>
-    This one year with you has been the most beautiful chapter of my life.
-    Your smile is my strength, your love is my peace, and your presence is my home.
+    This one year with you has been the most beautiful journey of my life.
+    Your smile is my strength and your love is my peace.
     <br><br>
     I promise to love you more with every heartbeat.
     This is just the beginning of our forever ❤️
@@ -164,22 +152,32 @@
 </footer>
 
 <script>
-  function enterSite() {
+  const music = document.getElementById("bgMusic");
+  const btn = document.getElementById("startBtn");
+
+  btn.addEventListener("click", () => {
     document.getElementById("introScreen").style.display = "none";
 
-    const music = document.getElementById("bgMusic");
-    music.play().catch(() => {
-      console.log("User interaction required");
-    });
-  }
+    music.muted = false;
+    music.volume = 1;
 
-  function createFalling(className, symbol) {
+    music.play().catch(() => {
+      alert("Tap once anywhere on the screen to start music ❤️");
+    });
+  });
+
+  document.body.addEventListener("click", () => {
+    if (music.paused) {
+      music.play().catch(() => {});
+    }
+  }, { once: true });
+
+  function createFalling(cls, symbol) {
     const el = document.createElement("div");
-    el.className = className;
+    el.className = cls;
     el.innerHTML = symbol;
     el.style.left = Math.random() * 100 + "vw";
     el.style.animationDuration = 4 + Math.random() * 6 + "s";
-    el.style.opacity = Math.random();
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 10000);
   }
